@@ -1,0 +1,8 @@
+{
+  "name": "trello_clone_frontend",
+  "version": "1.0.0",
+  "description": "\"Skill test story of AMS\"",
+  "main": "index.js",
+  "author": "Tijmen de Graaff",
+  "license": "MIT"
+}
