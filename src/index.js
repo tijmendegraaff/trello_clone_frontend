@@ -1,8 +1,7 @@
-import React from "react";
-import { render } from "react-dom";
+import React from 'react';
+import { render } from 'react-dom';
+import AppRouter from './routers/AppRouter';
 
-import "./styles/styles.scss";
+import './styles/styles.scss';
 
-const App = () => <div>Hello world</div>;
-
-render(<App />, document.getElementById("app"));
+render(<AppRouter />, document.getElementById('app'));
