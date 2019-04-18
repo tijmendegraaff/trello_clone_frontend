@@ -4,5 +4,11 @@
   "description": "\"Skill test story of AMS\"",
   "main": "index.js",
   "author": "Tijmen de Graaff",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0"
+  }
 }
