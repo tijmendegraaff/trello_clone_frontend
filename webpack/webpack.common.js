@@ -1,11 +1,12 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   output: {
-    path: path.resolve(__dirname, "../dist"),
-    filename: "[name].[chunkhash].js"
+    publicPath: '/',
+    path: path.resolve(__dirname, '../dist'),
+    filename: '[name].[chunkhash].js',
   },
   module: {
     rules: [
@@ -13,36 +14,36 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.scss$/,
         use: [
-          "style-loader",
+          'style-loader',
           MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader",
-            options: { sourceMap: true }
+            loader: 'css-loader',
+            options: { sourceMap: true },
           },
-          "postcss-loader",
+          'postcss-loader',
           {
-            loader: "sass-loader",
-            options: { sourceMap: true }
-          }
-        ]
-      }
-    ]
+            loader: 'sass-loader',
+            options: { sourceMap: true },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html",
+      template: './src/index.html',
+      filename: './index.html',
       hash: true,
-      inject: false
+      inject: false,
     }),
     new MiniCssExtractPlugin({
-      filename: "style.[contenthash].css"
-    })
-  ]
+      filename: 'style.[contenthash].css',
+    }),
+  ],
 };
