@@ -1,8 +1,8 @@
-import { FETCH_BOARD } from '../actions/types';
+import { FETCH_BOARDS } from '../actions/types';
 
 export default function (state = {}, action) {
   switch (action.type) {
-    case FETCH_BOARD:
+    case FETCH_BOARDS:
       return action.payload || [];
     default:
       return state;
