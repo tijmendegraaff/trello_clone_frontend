@@ -13,7 +13,6 @@ class RegisterPage extends Component {
         email: '',
         password: '',
       },
-      submitted: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,17 +29,18 @@ class RegisterPage extends Component {
     });
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
 
     // this.setState({ submitted: true });
     const {
       firstName, lastName, email, password,
     } = this.state.user;
+    const { history } = this.props;
     if (email && password) {
       const url = 'http://localhost:3000/users/';
       try {
-        axios
+        await axios
           .post(url, {
             firstName,
             lastName,
@@ -48,7 +48,8 @@ class RegisterPage extends Component {
             password,
           })
           .then((res) => {
-            console.log(res);
+            localStorage.setItem('token', res.data.token);
+            history.push('/boards');
           });
       } catch (error) {
         console.log(error);
