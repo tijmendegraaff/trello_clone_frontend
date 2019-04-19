@@ -9,7 +9,6 @@ class LoginPage extends Component {
     this.state = {
       email: '',
       password: '',
-      submitted: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,16 +19,19 @@ class LoginPage extends Component {
     this.setState({ [name]: value });
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
 
     // this.setState({ submitted: true });
     const { email, password } = this.state;
+    const { history } = this.props;
     if (email && password) {
       const url = 'http://localhost:3000/users/login';
       try {
-        axios.post(url, { email, password }).then((res) => {
+        await axios.post(url, { email, password }).then((res) => {
           console.log(res);
+          localStorage.setItem('token', res.data.token);
+          history.push('/boards');
         });
       } catch (error) {
         console.log(error);
