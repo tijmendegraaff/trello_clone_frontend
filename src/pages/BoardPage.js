@@ -24,7 +24,9 @@ class BoardPage extends Component {
   render() {
     console.log(this.props);
     const { name } = this.props.board;
+    const { lists } = this.props.board;
     const { loading } = this.state;
+
     return loading ? (
       <p>loading</p>
     ) : (
@@ -33,7 +35,8 @@ class BoardPage extends Component {
           This is the board with name:
           {name}
         </h1>
-        <CardList title="test" />
+
+        {lists.length !== 0 ? lists.map(list => <p>{list.name}</p>) : null}
       </div>
     );
   }
