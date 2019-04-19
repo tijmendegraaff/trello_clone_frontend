@@ -10,6 +10,7 @@
     "build:prod": "webpack --config webpack/webpack.prod.js --progress"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "normalize.css": "^8.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

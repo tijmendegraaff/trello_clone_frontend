@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class RegisterPage extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class RegisterPage extends Component {
       submitted: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -28,8 +30,33 @@ class RegisterPage extends Component {
     });
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+
+    // this.setState({ submitted: true });
+    const {
+      firstName, lastName, email, password,
+    } = this.state.user;
+    if (email && password) {
+      const url = 'http://localhost:3000/users/';
+      try {
+        axios
+          .post(url, {
+            firstName,
+            lastName,
+            email,
+            password,
+          })
+          .then((res) => {
+            console.log(res);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
   render() {
-    console.log(this.state);
     const { user } = this.state;
     return (
       <div>

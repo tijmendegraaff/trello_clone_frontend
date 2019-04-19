@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class LoginPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: '',
+      email: '',
       password: '',
       submitted: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -18,16 +20,32 @@ class LoginPage extends Component {
     this.setState({ [name]: value });
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+
+    // this.setState({ submitted: true });
+    const { email, password } = this.state;
+    if (email && password) {
+      const url = 'http://localhost:3000/users/login';
+      try {
+        axios.post(url, { email, password }).then((res) => {
+          console.log(res);
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
   render() {
-    console.log(this.state);
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     return (
       <div>
         <div>This is from my LoginPage!</div>
         <form name="form" onSubmit={this.handleSubmit}>
           <div>
             <div>Email</div>
-            <input type="text" name="username" value={username} onChange={this.handleChange} />
+            <input type="text" name="email" value={email} onChange={this.handleChange} />
           </div>
           <div>
             <div>Password</div>
