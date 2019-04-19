@@ -7,6 +7,7 @@ import DashboardPage from '../pages/DashboardPage';
 import BoardPage from '../pages/BoardPage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
+import CreateBoardPage from '../pages/CreateBoardPage';
 import NotFoundPage from '../pages/NotFoundPage';
 
 const isAuthenticated = () => {
@@ -42,6 +43,7 @@ export default () => (
       <Route path="/login" exact component={LoginPage} />
       <Route path="/register" exact component={RegisterPage} />
       <PrivateRoute path="/boards" exact component={DashboardPage} />
+      <PrivateRoute path="/boards/create" exact component={CreateBoardPage} />
       <PrivateRoute path="/boards/:id" exact component={BoardPage} />
       <Route component={NotFoundPage} />
     </Switch>
