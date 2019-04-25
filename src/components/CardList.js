@@ -10,8 +10,8 @@ const CardList = ({ name, tasks, listId }) => {
       <Droppable droppableId={listId}>
         {provided => (
           <div className="cardList" {...provided.droppableProps} ref={provided.innerRef}>
-            {tasks.map((task, index) => (
-              <Card task={task} key={task._id} index={index} />
+            {tasks.map(task => (
+              <Card task={task} key={task._id} index={task.order} />
             ))}
             {provided.placeholder}
           </div>
