@@ -23,7 +23,19 @@ class BoardPage extends Component {
     this.setState({ loading: false });
   }
 
-  onDragEnd = result => {};
+  onDragEnd = result => {
+    const { destination, source, draggableId } = result;
+    if (!destination) {
+      return;
+    }
+
+    if (destination.droppableId === source.droppableId && destination.index === source.index) {
+      return;
+    }
+    console.log(destination);
+    const taskList = this.props.board.lists.find(list => list._id === source.droppableId);
+    console.log(taskList);
+  };
 
   render() {
     console.log(this.props);
