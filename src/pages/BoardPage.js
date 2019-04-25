@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { DragDropContext } from 'react-beautiful-dnd';
 import * as actions from '../actions';
 
 import CardList from '../components/CardList';
@@ -12,6 +13,7 @@ class BoardPage extends Component {
     this.state = {
       loading: true,
     };
+    this.onDragEnd = this.onDragEnd.bind(this);
   }
 
   async componentDidMount() {
@@ -21,10 +23,11 @@ class BoardPage extends Component {
     this.setState({ loading: false });
   }
 
+  onDragEnd = result => {};
+
   render() {
     console.log(this.props);
-    const { name } = this.props.board;
-    const { lists } = this.props.board;
+    const { name, lists } = this.props.board;
     const { loading } = this.state;
 
     return loading ? (
@@ -35,8 +38,13 @@ class BoardPage extends Component {
           This is the board with name:
           {name}
         </h1>
-
-        {lists.length !== 0 ? lists.map(list => <p>{list.name}</p>) : null}
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          {lists.length !== 0
+            ? lists.map(list => (
+                <CardList key={list._id} name={list.name} tasks={list.tasks} listId={list._id} />
+              ))
+            : null}
+        </DragDropContext>
       </div>
     );
   }
