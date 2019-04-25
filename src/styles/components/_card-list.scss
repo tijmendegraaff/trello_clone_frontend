@@ -1,3 +1,14 @@
 .container {
-  background-color: $off-white;
+  // background-color: $off-white;
+  margin: 8px;
+  border: 1px solid lightgray;
+  border-radius: 2px;
+}
+
+.title {
+  padding: 8px;
+}
+
+.cardList {
+  padding: 8px;
 }
