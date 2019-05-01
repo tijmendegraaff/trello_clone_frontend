@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { DragDropContext } from 'react-beautiful-dnd';
-import * as actions from '../actions';
+import * as actions from '../store/actions';
 
 import CardList from '../components/CardList';
 
@@ -32,13 +31,13 @@ class BoardPage extends Component {
     if (destination.droppableId === source.droppableId && destination.index === source.index) {
       return;
     }
-    console.log(destination);
-    const taskList = this.props.board.lists.find(list => list._id === source.droppableId);
-    console.log(taskList);
+    const newTaskList = this.props.board.lists.find(list => list._id === destination.droppableId);
+    if (newTaskList.tasks.length === 0) {
+      console.log('set index to 0 and change the listId on task');
+    }
   };
 
   render() {
-    console.log(this.props);
     const { name, lists } = this.props.board;
     const { loading } = this.state;
 
