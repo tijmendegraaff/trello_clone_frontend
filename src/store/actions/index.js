@@ -1,5 +1,5 @@
 import axios from 'axios';
-import authHeader from '../helpers/auth-header';
+import authHeader from '../../helpers/auth-header';
 import { FETCH_USER, FETCH_BOARDS, FETCH_BOARD } from './types';
 
 export const fetchUser = () => async (dispatch) => {
@@ -17,7 +17,6 @@ export const fetchBoards = () => async (dispatch) => {
 };
 
 export const fetchBoard = id => async (dispatch) => {
-  console.log(id);
   const res = await axios.get(`http://localhost:3000/boards/${id}`, {
     headers: authHeader(),
   });
