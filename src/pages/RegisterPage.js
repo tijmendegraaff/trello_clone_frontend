@@ -40,17 +40,14 @@ class RegisterPage extends Component {
     if (email && password) {
       const url = 'http://localhost:3000/users/';
       try {
-        await axios
-          .post(url, {
-            firstName,
-            lastName,
-            email,
-            password,
-          })
-          .then((res) => {
-            localStorage.setItem('token', res.data.token);
-            history.push('/boards');
-          });
+        const res = await axios.post(url, {
+          firstName,
+          lastName,
+          email,
+          password,
+        });
+        localStorage.setItem('token', res.data.token);
+        history.push('/boards');
       } catch (error) {
         console.log(error);
       }
